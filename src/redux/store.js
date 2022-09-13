@@ -1,9 +1,10 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import initialState from './initialState';
+import tablesReducer from './tablesRedux';
 
-const reducer = (state, action) => {
-  return state;
-};
+const reducer = combineReducers({
+  tables: tablesReducer
+})
 
 const store = createStore(
   reducer,
