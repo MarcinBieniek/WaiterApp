@@ -3,7 +3,9 @@
 const Footer = () => {
 
     return (
-        <h1>Footer</h1>
+        <div>
+            <p className="mt-5 text-center text-muted">Copyright @ Almighty Marcin Bieniek 2022</p>
+        </div>
     )
 }
 
