@@ -16,7 +16,7 @@ import NotFound from './components/pages/NotFound';
 const App = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => fetchTables(dispatch), [dispatch]);
+  useEffect(() => dispatch(fetchTables()), [dispatch]);
 
   return (
     <main>

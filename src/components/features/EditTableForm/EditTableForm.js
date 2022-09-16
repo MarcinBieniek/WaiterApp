@@ -4,32 +4,28 @@ import { useParams } from 'react-router';
 import { useSelector } from 'react-redux';
 import { getTableById } from '../../../redux/tablesRedux';
 import { Navigate } from 'react-router-dom';
+import { updateTableRequest } from '../../../redux/tablesRedux';
 
 import TableForm from '../TableForm/TableForm';
 
 const EditTableForm = () => {
     
-    /*
     const dispatch = useDispatch();
     const navigate = useNavigate();
     
-    const handleSubmit = post => {
-        dispatch(editPost({ ...post, id }));
+    const handleSubmit = table => {
+        dispatch(updateTableRequest({ ...table, id }));
         navigate('/')
     };
 
-    */
     const { id } = useParams();
 
     const tableData = useSelector(state => getTableById(state, id))
-    
-    const actionText = "Update";
 
     if(!tableData) return <Navigate to="/" />
     else return (
         <TableForm 
-            //action={handleSubmit} 
-            actionText={actionText}
+            action={handleSubmit} 
             id={tableData.id}
             status={tableData.status}
             peopleAmount={tableData.peopleAmount}

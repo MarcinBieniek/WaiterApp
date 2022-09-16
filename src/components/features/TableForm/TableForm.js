@@ -1,7 +1,5 @@
 import clsx from 'clsx';
 import {useState} from 'react';
-import { useParams } from 'react-router';
-import { useSelector } from 'react-redux';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -10,7 +8,7 @@ import { Link } from 'react-router-dom';
 import styles from './TableForm.module.scss';
 
 const TableForm = ({
-    actionText,
+    action,
     ...props}
 ) => {
 
@@ -19,12 +17,14 @@ const TableForm = ({
     const [maxPeopleAmount, setMaxPeopleAmount] = useState(props.maxPeopleAmount)
     const [bill, setBill] = useState(props.bill);
 
-    console.log('maxPeopleAmount', maxPeopleAmount)
+    const handleSubmit = () => {
+        action({ status, peopleAmount, maxPeopleAmount, bill })
+    }
 
     return (
         <>
             <h1 className={"mb-4"}>Table {props.id}</h1>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <Form.Label className="d-inline fw-bold pe-3 mb-4">Status:</Form.Label>
                 <Form.Select 
                     className="d-inline w-25 mb-4" 
@@ -66,10 +66,8 @@ const TableForm = ({
                         onChange={e => setBill(e.target.value)}
                         />
                 </div>
-                <Link to={"/"}>
-                    <Button variant="primary" size="lg">Update</Button>
-                </Link>
-    </Form>
+                <Button type="button" variant="primary" size="lg" type="submit">Update</Button>
+            </Form>
         </>
     )
 }
